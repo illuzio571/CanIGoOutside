@@ -1,6 +1,53 @@
 ﻿@{
     ViewBag.Title = "Can I Go Outside?";
+    ViewBag.temp = "55";
+    ViewBag.
 }
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding: 0px;
+            background-image: url("/Images/SunnyDay.jpg");
+        }
+
+        .tableRight {
+            margin-left: 20px;
+        }
+    </style>
+</head>
 <body>
-<p>test</p>
+    <table id="table" align="center">
+        <tbody>
+            <tr>
+                <td>
+                    <div id="temp">
+                        <b>Temp: </b>@ViewBag.temp
+                    </div>
+                </td>
+                <td>
+                    <div id="humidity" class="tableRight">
+                        <b>Humidity: </b>@ViewBag.humidity%
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="wind">
+                        <b>Wind Speed: </b>@ViewBag.wind mph
+                    </div>
+                </td>
+                <td>
+                    <div id="precipitation" class="tableRight">
+                        <b>% Chance of Precipitation: </b>@ViewBag.precipitation
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+<script>
+    $(window).on('resize', function () {
+        $('#table').css('margin-top', (($(this).width() / 4)) - 40);
+    }).resize();
+</script>

@@ -151,6 +151,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentCondiditon.cs" />
+    <Compile Include="Models\HourlyForecast.cs" />
+    <Compile Include="Models\Imperial.cs" />
+    <Compile Include="Models\Metric.cs" />
+    <Compile Include="Models\Speed.cs" />
+    <Compile Include="Models\Temperature.cs" />
+    <Compile Include="Models\Wind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

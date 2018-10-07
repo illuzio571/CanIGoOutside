@@ -10,7 +10,10 @@ namespace CanIGoOutside.Controllers
     {
         public ActionResult Index()
         {
+            string locationKey;
+
             return View();
+            
         }
     }
 }

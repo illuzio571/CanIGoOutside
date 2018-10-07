@@ -17,6 +17,7 @@ namespace CanIGoOutside.Controllers
     {
         static HttpClient client = new HttpClient();
         string locationCode;
+        HourlyForecast hourlyForecast;
         CurrentCondition currentCondition;
 
         [HttpGet]
@@ -31,12 +32,13 @@ namespace CanIGoOutside.Controllers
             GetLocationCode(zip);
             if (locationCode != null)
             {
+                GetHourlyForecast();
                 GetCurrentCondition();
 
-                ViewBag.temp = currentCondition.Temperature;
-                ViewBag.windSpeed = currentCondition.WindSpeed;
-                ViewBag.humidity = currentCondition.RelativeHumidity;
-                ViewBag.rainChance = currentCondition.PrecipitationProbability;
+                ViewBag.temp = hourlyForecast.Temperature;
+                ViewBag.windSpeed = hourlyForecast.WindSpeed;
+                ViewBag.humidity = hourlyForecast.RelativeHumidity;
+                ViewBag.rainChance = hourlyForecast.PrecipitationProbability;
 
                 if (CheckIfYouCanGoOutside())
                 {
@@ -44,7 +46,7 @@ namespace CanIGoOutside.Controllers
                 }
                 else
                 {
-                    ViewBag.result = "No!";
+                    ViewBag.result = "No.";
                 }
             }
             else
@@ -68,9 +70,20 @@ namespace CanIGoOutside.Controllers
             locationCode = postalCode.Key;
         }
 
-        private void GetCurrentCondition()
+        private void GetHourlyForecast()
         {
             var client = new RestClient("http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/" + locationCode + "?apikey=HackPSU2018&details=true&metric=false");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Postman-Token", "23acb8fb-c16a-4064-b29c-7d55d782675e");
+            request.AddHeader("Cache-Control", "no-cache");
+            IRestResponse response = client.Execute(request);
+
+            hourlyForecast = new HourlyForecast(response.Content.ToString());
+        }
+
+        private void GetCurrentCondition()
+        {
+            var client = new RestClient("http://dataservice.accuweather.com/currentconditions/v1/" + locationCode + "?apikey=HackPSU2018&details=true");
             var request = new RestRequest(Method.GET);
             request.AddHeader("Postman-Token", "23acb8fb-c16a-4064-b29c-7d55d782675e");
             request.AddHeader("Cache-Control", "no-cache");
@@ -81,34 +94,34 @@ namespace CanIGoOutside.Controllers
 
         private bool CheckIfYouCanGoOutside()
         {
-            if (currentCondition.Temperature < 50)
+            if (hourlyForecast.Temperature < 50)
             {
                 ViewBag.reason = "Too cold!";
-                return true;
+                return false;
             }
-            else if (currentCondition.Temperature >= 90)
+            else if (hourlyForecast.Temperature >= 90)
             {
                 ViewBag.reason = "Too hot!";
-                return true;
+                return false;
             }
-            else if (currentCondition.RainValue > 0)
+            else if (currentCondition.WeatherText.ToString().ToLower().Contains("thunder"))
             {
-                ViewBag.reason = "It's raining!!!";
-                return true;
+                ViewBag.reason = "There's thunder out there!!!";
+                return false;
             }
-            else if (currentCondition.SnowValue > 0)
+            else if (hourlyForecast.SnowValue > 0)
             {
                 ViewBag.reason = "It's snowing!!!";
-                return true;
+                return false;
             }
-            else if (currentCondition.IceValue > 0)
+            else if (hourlyForecast.IceValue > 0)
             {
                 ViewBag.reason = "There's ice!!!";
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
     }

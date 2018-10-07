@@ -6,6 +6,7 @@
     <style>
         body {
             padding: 0px;
+            margin-top: 240px;
             background-image: url("/Images/SunnyDay.jpg");
         }
         .tableRight {
@@ -13,58 +14,61 @@
         }
         #table {
             font-size: 20px;
+            margin-top: 100px;
         }
     </style>
 </head>
 <body>
-    @using (Html.BeginForm())
-    {
-        <form id="zipForm">
-        <input id="zipCode" type="text" name="zip" />
-        </form>
-    }
-    <table id="table" align="center">
-        <tbody>
-            <tr>
-                <td>
-                    <div id="yesno">
-                        <h1 id="result">@ViewBag.result</h1>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="temp">
-                        <b>Temp: </b>@ViewBag.temp
-                    </div>
-                </td>
-                <td>
-                    <div id="humidity" class="tableRight">
-                        <b>Humidity: </b>@ViewBag.humidity%
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="wind">
-                        <b>Wind Speed: </b>@ViewBag.windSpeed mph
-                    </div>
-                </td>
-                <td>
-                    <div id="precipitation" class="tableRight">
-                        <b>Chance of Precipitation: </b>@ViewBag.rainChance%
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div style="text-align: center;">
+        <p style="font-size: 80px; margin-top: 100px;">@ViewBag.Title</p>
+        <p style="font-size: 30px;">Enter Zip Code:</p>
+        @using (Html.BeginForm())
+        {
+            <form id="zipForm">
+                <input style="padding: 5px; font-size: 25px; text-align: center;" id="zipCode" type="text" name="zip" />
+            </form>
+        }
+    </div>
+    <div>
+        <table id="table" align="center">
+            <tbody>
+                <tr>
+                    <td>
+                        <div id="yesno" style="align-self: center">
+                            <h1 id="result">@ViewBag.result @ViewBag.reason</h1>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="temp">
+                            <b>Temp: </b>@ViewBag.temp&#176;F 
+                        </div>
+                    </td>
+                    <td>
+                        <div id="humidity" class="tableRight">
+                            <b>Humidity: </b>@ViewBag.humidity%
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="wind">
+                            <b>Wind Speed: </b>@ViewBag.windSpeed mph
+                        </div>
+                    </td>
+                    <td>
+                        <div id="precipitation" class="tableRight">
+                            <b>Chance of Precipitation: </b>@ViewBag.rainChance%
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 <script>
-    $(window).on('resize', function () {
-        $('#table').css('margin-top', (($(this).width() / 4)) - 60);
-    }).resize();
-
     $("zipCode").keypress(function (event) {
         if (event.which == 13) {
             event.preventDefault();

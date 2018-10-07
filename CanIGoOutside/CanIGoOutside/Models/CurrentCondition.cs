@@ -16,22 +16,10 @@ namespace CanIGoOutside.Models
                 if (jsonArray != null)
                 {
                     dynamic data = JObject.Parse(jsonArray[0].ToString());
-                    Temperature = data.Temperature.Value;
-                    WindSpeed = data.Wind.Speed.Value;
-                    RelativeHumidity = data.RelativeHumidity;
-                    PrecipitationProbability = data.PrecipitationProbability;
-                    RainValue = data.Rain.Value;
-                    SnowValue = data.Snow.Value;
-                    IceValue = data.Ice.Value;
+                    WeatherText = data.WeatherText;
                 }
             }
         }
-        public decimal Temperature { get; set; }
-        public decimal WindSpeed { get; set; }
-        public decimal RelativeHumidity { get; set; }
-        public decimal PrecipitationProbability { get; set; }
-        public decimal RainValue { get; set; }
-        public decimal SnowValue { get; set; }
-        public decimal IceValue { get; set; }
+        public string WeatherText { get; set; }
     }
 }

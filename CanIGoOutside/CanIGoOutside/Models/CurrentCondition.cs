@@ -17,9 +17,11 @@ namespace CanIGoOutside.Models
                 {
                     dynamic data = JObject.Parse(jsonArray[0].ToString());
                     WeatherText = data.WeatherText;
+                    LocalTime = data.LocalObservationDateTime;
                 }
             }
         }
         public string WeatherText { get; set; }
+        public string LocalTime { get; set; }
     }
 }

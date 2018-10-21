@@ -23,6 +23,7 @@ namespace CanIGoOutside.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.image = "SunnyDay";
             return View();
         }
 
@@ -94,33 +95,45 @@ namespace CanIGoOutside.Controllers
 
         private bool CheckIfYouCanGoOutside()
         {
-            if (hourlyForecast.Temperature < 50)
+            if (currentCondition.WeatherText.ToString().ToLower().Contains("thunder"))
+            {
+                ViewBag.reason = "There's thunder out there!!!";
+                ViewBag.image = "SunnyDay";
+                return false;
+            }
+            else if (currentCondition.WeatherText.ToString().ToLower().Contains("snow"))
+            {
+                ViewBag.reason = "It's snowing!!!";
+                ViewBag.image = "SunnyDay";
+                return false;
+            }
+            else if (currentCondition.WeatherText.ToString().ToLower().Contains("ice"))
+            {
+                ViewBag.reason = "There's ice!!!";
+                ViewBag.image = "SunnyDay";
+                return false;
+            }
+            else if (currentCondition.WeatherText.ToString().ToLower().Contains("rain"))
+            {
+                ViewBag.reason = "It's raining!!!";
+                ViewBag.image = "RainyDay";
+                return false;
+            }
+            else if (hourlyForecast.Temperature < 50)
             {
                 ViewBag.reason = "Too cold!";
+                ViewBag.image = "SunnyDay";
                 return false;
             }
             else if (hourlyForecast.Temperature >= 90)
             {
                 ViewBag.reason = "Too hot!";
-                return false;
-            }
-            else if (currentCondition.WeatherText.ToString().ToLower().Contains("thunder"))
-            {
-                ViewBag.reason = "There's thunder out there!!!";
-                return false;
-            }
-            else if (hourlyForecast.SnowValue > 0)
-            {
-                ViewBag.reason = "It's snowing!!!";
-                return false;
-            }
-            else if (hourlyForecast.IceValue > 0)
-            {
-                ViewBag.reason = "There's ice!!!";
+                ViewBag.image = "SunnyDay";
                 return false;
             }
             else
             {
+                ViewBag.reason = "It's " + currentCondition.WeatherText.ToString().ToLower() + ".";
                 return true;
             }
         }

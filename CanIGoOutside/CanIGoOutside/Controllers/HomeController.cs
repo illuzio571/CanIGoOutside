@@ -60,7 +60,7 @@ namespace CanIGoOutside.Controllers
 
         private void GetLocationCode(string zip)
         {
-            var client = new RestClient("http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=HackPSU2018&q=" + zip);
+            var client = new RestClient("http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=SyQbb4hIuNveRnj4NLzAWrRWBPMyv53q&q=" + zip);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Postman-Token", "23acb8fb-c16a-4064-b29c-7d55d782675e");
             request.AddHeader("Cache-Control", "no-cache");
@@ -73,7 +73,7 @@ namespace CanIGoOutside.Controllers
 
         private void GetHourlyForecast()
         {
-            var client = new RestClient("http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/" + locationCode + "?apikey=HackPSU2018&details=true&metric=false");
+            var client = new RestClient("http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/" + locationCode + "?apikey=SyQbb4hIuNveRnj4NLzAWrRWBPMyv53q&details=true&metric=false");
             var request = new RestRequest(Method.GET);
             request.AddHeader("Postman-Token", "23acb8fb-c16a-4064-b29c-7d55d782675e");
             request.AddHeader("Cache-Control", "no-cache");
@@ -84,7 +84,7 @@ namespace CanIGoOutside.Controllers
 
         private void GetCurrentCondition()
         {
-            var client = new RestClient("http://dataservice.accuweather.com/currentconditions/v1/" + locationCode + "?apikey=HackPSU2018&details=true");
+            var client = new RestClient("http://dataservice.accuweather.com/currentconditions/v1/" + locationCode + "?apikey=SyQbb4hIuNveRnj4NLzAWrRWBPMyv53q&details=true");
             var request = new RestRequest(Method.GET);
             request.AddHeader("Postman-Token", "23acb8fb-c16a-4064-b29c-7d55d782675e");
             request.AddHeader("Cache-Control", "no-cache");

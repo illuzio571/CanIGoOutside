@@ -6,8 +6,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword />
-    <_PublishTargetUrl>ftp://canigooutside.somee.com/www.canigooutside.somee.com</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6Sj6orCz4Eip29rv5R4W1AAAAAACAAAAAAAQZgAAAAEAACAAAACI7agBAbksQZ5xUXaXBq7PppLKh2jQMCUOVYdJlm/aHAAAAAAOgAAAAAIAACAAAAA4C16x49fBBWRhtrPJuiOXr5ELrwYvb2hu9ZKix1wQSyAAAAA7eQut/tMP4YCrrqGP+SrKSlnVdUV1zYKGzFAsYwDe5kAAAACxMK8s+TJiporY/alnoN1LLPZrECa8851kxLvpSutsLEjxDszY/JhQDxLGdEPgD31IzUwuPPgrfpIYOlSZz7Jp</EncryptedPassword>
+    <_PublishTargetUrl>ftp://illuzio.somee.com/www.illuzio.somee.com/canigooutside</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -23,10 +23,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/06/2018 22:54:09</publishTime>
     </File>
     <File Include="bin/CanIGoOutside.dll">
-      <publishTime>10/07/2018 14:13:14</publishTime>
+      <publishTime>11/15/2018 23:30:54</publishTime>
     </File>
     <File Include="bin/CanIGoOutside.pdb">
-      <publishTime>10/07/2018 14:13:14</publishTime>
+      <publishTime>11/15/2018 23:30:54</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -329,7 +329,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/06/2018 22:54:06</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/07/2018 14:12:57</publishTime>
+      <publishTime>11/15/2018 23:30:16</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/06/2018 22:53:10</publishTime>
